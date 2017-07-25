@@ -1,4 +1,4 @@
-package example;
+package example.simple;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -9,11 +9,14 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
-public class NettyServer {
+// 很简单的一个例子，没有客户端，用 telnet 当客户端连接服务器
+// 命令 telnet localhost 10086
+// 任意输入服务器控制台中即可响应
+public class Server {
 
 	private int port;
 
-	public NettyServer(int port) {
+	public Server(int port) {
 		this.port = port;
 	}
 
@@ -37,7 +40,7 @@ public class NettyServer {
 			b = b.childHandler(new ChannelInitializer<SocketChannel>() {
 				@Override
 				public void initChannel(SocketChannel ch) throws Exception {
-					ch.pipeline().addLast(new SimpleChannelHandler());
+					ch.pipeline().addLast(new ServerHandler());
 				}
 			});
 			// 配置 Channel 参数
@@ -58,7 +61,7 @@ public class NettyServer {
 	}
 
 	public static void main(String[] args) throws Exception {
-		new NettyServer(10086).startup();
+		new Server(10086).startup();
 	}
 
 }
