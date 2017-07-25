@@ -37,7 +37,7 @@ public class NettyServer {
 			b = b.childHandler(new ChannelInitializer<SocketChannel>() {
 				@Override
 				public void initChannel(SocketChannel ch) throws Exception {
-					ch.pipeline().addLast(new EchoChannelHandler());
+					ch.pipeline().addLast(new SimpleChannelHandler());
 				}
 			});
 			// 配置 Channel 参数
