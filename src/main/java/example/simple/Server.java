@@ -37,7 +37,7 @@ public class Server {
 			// 这里的事件处理类 childHandler 经常会被用来处理一个最近的已经接收的 Channel
 			// ChannelInitializer 是一个特殊的处理类，他的目的是帮助使用者配置一个新的 Channel
 			// 如增加一些处理类比如 EchoChannelHandler 来配置一个新的 Channel
-			b = b.childHandler(new ChannelInitializer<SocketChannel>() {
+			b.childHandler(new ChannelInitializer<SocketChannel>() {
 				@Override
 				public void initChannel(SocketChannel ch) throws Exception {
 					ch.pipeline().addLast(new ServerHandler());
@@ -47,8 +47,8 @@ public class Server {
 			// option() 是提供给NioServerSocketChannel 用来接收进来的连接。
 			// childOption() 是提供给由父管道 ServerChannel 接收到的连接，在这个例子中也是
 			// NioServerSocketChannel
-			b = b.option(ChannelOption.SO_BACKLOG, 128);
-			b = b.childOption(ChannelOption.SO_KEEPALIVE, true);
+			b.option(ChannelOption.SO_BACKLOG, 128);
+			b.childOption(ChannelOption.SO_KEEPALIVE, true);
 
 			// 绑定端口，开始接收进来的连接
 			ChannelFuture f = b.bind(port).sync();
