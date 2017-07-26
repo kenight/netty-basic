@@ -32,8 +32,9 @@ public class Server {
 		try {
 			// ServerBootstrap 是一个启动 NIO 服务的辅助启动类(配置参数等)
 			ServerBootstrap b = new ServerBootstrap();
+			b.group(bossGroup, workerGroup);
 			// 告诉 Channel 使用 NioServerSocketChannel 类来接收新进来的连接
-			b.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class);
+			b.channel(NioServerSocketChannel.class);
 			// 这里的事件处理类 childHandler 经常会被用来处理一个最近的已经接收的 Channel
 			// ChannelInitializer 是一个特殊的处理类，他的目的是帮助使用者配置一个新的 Channel
 			// 如增加一些处理类比如 EchoChannelHandler 来配置一个新的 Channel
