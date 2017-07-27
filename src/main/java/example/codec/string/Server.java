@@ -17,7 +17,7 @@ public class Server {
 			ServerBootstrap b = new ServerBootstrap();
 			b.group(bossGroup, workerGroup);
 			b.channel(NioServerSocketChannel.class);
-			b.childHandler(new ServerChannelInitializer());
+			b.childHandler(new ServerHandlerInitializer());
 
 			// 绑定端口启动服务
 			ChannelFuture f = b.bind(port).sync();

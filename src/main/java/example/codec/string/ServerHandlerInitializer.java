@@ -7,7 +7,7 @@ import io.netty.handler.codec.Delimiters;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 
-public class ServerChannelInitializer extends ChannelInitializer<SocketChannel> {
+public class ServerHandlerInitializer extends ChannelInitializer<SocketChannel> {
 
 	// ChannelPipeline 的执行顺序, 举例说明(官方文档)
 	// p.addLast("1", new InboundHandlerA());
